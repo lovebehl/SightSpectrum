@@ -6,12 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as loginActions from 'app/actions/loginActions';
 import styles from './styles';
 import SwipeButton from 'rn-swipe-button';
+// import { Image } from 'react-native-paper/lib/typescript/src/components/Avatar/Avatar';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
   const onLogout = () => dispatch(loginActions.logOut());
-  const { username, age, password } = useSelector((state: any) => state.loginReducer);
-
+  const { username, age, password } = useSelector(
+    (state: any) => state.loginReducer,
+  );
   return (
     <View style={styles.container}>
       <Text>User Name : {username}</Text>
@@ -50,11 +52,7 @@ const Home: React.FC = () => {
         //width of the button (Optional)
         title="Swipe to Submit"
         titleFontSize={14}
-        //Text inside the button (Optional)
-        // thumbIconImageSource={diamond}
-        //You can also set your own icon for the button (Optional)
         onSwipeSuccess={() => Alert.alert('Submitted Successfully!')}
-        //After the completion of swipe (Optional)
         railFillBackgroundColor="#e688a1" //(Optional)
         railFillBorderColor="#e688ff" //(Optional)
         thumbIconBackgroundColor="#ed9a73" //(Optional)

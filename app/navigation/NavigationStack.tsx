@@ -17,8 +17,10 @@ const Stack = createStackNavigator();
 const AuthStack = createStackNavigator();
 const LoggedInStack = createStackNavigator();
 
+var headerTitle = 'Home';
+
 const homeOptions = {
-  title: 'Home',
+  title: headerTitle,
   headerTitleStyle: {
     fontWeight: 'bold',
   },
@@ -65,7 +67,7 @@ const AuthNavigator = () => {
 
 const LoggedInNavigator = () => (
   <LoggedInStack.Navigator>
-    <Stack.Screen name="Home" component={Home} options={homeOptions} />
+    <Stack.Screen name={'Home'} component={Home} options={homeOptions} />
   </LoggedInStack.Navigator>
 );
 
@@ -74,7 +76,6 @@ const App: React.FC<IProps> = (props: IProps) => {
   const isLoggedIn = useSelector(
     (state: IState) => state.loginReducer.isLoggedIn,
   );
-
   return (
     <NavigationContainer ref={navigationRef} theme={theme}>
       <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'} />
@@ -91,8 +92,6 @@ const App: React.FC<IProps> = (props: IProps) => {
             name="Login"
             component={AuthNavigator}
             options={{
-              // When logging out, a pop animation feels intuitive
-              // You can remove this if you want the default 'push' animation
               animationTypeForReplace: isLoggedIn ? 'push' : 'pop',
               headerRight: () => <ThemeController />,
             }}
